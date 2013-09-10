@@ -10,6 +10,17 @@ FileShareTool::Application.configure do
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'http://file-share-test.herokuapp.com/',
+    authentication:      'plain',
+    user_name:            ENV['EMAIL_USER_NAME'],
+    password:             ENV['EMAIL_PASSWORD'],
+    enable_starttls_auto: true  }
+
+
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true

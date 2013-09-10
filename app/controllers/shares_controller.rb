@@ -36,7 +36,9 @@ class SharesController < ApplicationController
       end
     end
     @document = Document.new({:item => params[:share][:document][:item], :share_id => @share.id})
-    @document.save!
+    if @document.save!
+      ShareNotice.share_notify(@share).deliver
+    end
 
   end
 
