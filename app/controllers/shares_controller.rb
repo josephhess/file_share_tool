@@ -10,6 +10,7 @@ class SharesController < ApplicationController
   # GET /shares/1
   # GET /shares/1.json
   def show
+    @document = Document.where(:share_id => @share.id)
   end
 
   # GET /shares/new
@@ -25,7 +26,6 @@ class SharesController < ApplicationController
   # POST /shares.json
   def create
     @share = Share.new(share_params)
-
     respond_to do |format|
       if @share.save
         format.html { redirect_to @share, notice: 'Share was successfully created.' }
@@ -35,6 +35,9 @@ class SharesController < ApplicationController
         format.json { render json: @share.errors, status: :unprocessable_entity }
       end
     end
+    @document = Document.new({:item => params[:share][:document][:item], :share_id => @share.id})
+    @document.save!
+
   end
 
   # PATCH/PUT /shares/1
@@ -69,6 +72,6 @@ class SharesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def share_params
-      params.require(:share).permit(:email, :recipient_email, :message, :url_string)
+      params.require(:share).permit(:email, :recipient_email, :message, :url_string, documents_attributes: [:share_id, :item])
     end
 end

@@ -11,12 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130909200137) do
+ActiveRecord::Schema.define(version: 20130909214235) do
 
   create_table "documents", force: true do |t|
     t.integer  "share_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "item"
   end
 
   create_table "shares", force: true do |t|

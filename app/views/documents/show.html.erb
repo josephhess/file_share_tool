@@ -4,6 +4,10 @@
   <strong>Share:</strong>
   <%= @document.share_id %>
 </p>
+<p>
+  <strong>Shared File</strong>
+  <a href="<%= @document.item %>" target="_blank"> Right Click to Download</a>
+</p>
 
 <%= link_to 'Edit', edit_document_path(@document) %> |
 <%= link_to 'Back', documents_path %>
