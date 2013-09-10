@@ -6,9 +6,16 @@
   <body>
     <h1>Welcome to file sharing heaven!</h1>
     <p>
-      <%= @share.email %> has shared a file with you!
-
-      please go to http://file-share-test.herokuapp.com/shares/<%= @share.id %> to download your file!!
+      <%= @share.name %> has shared a file with you!
+    </p>
+    <p>
+      A message regarding this file share:
+    </p>
+    <p>
+      <%= @share.message  %>
+    </p>
+    <p>
+      Please go to http://file-share-test.herokuapp.com/shares/<%= @share.id %> to download your file!!
     </p>
     <p>Thanks for joining and have a great day!</p>
   </body>

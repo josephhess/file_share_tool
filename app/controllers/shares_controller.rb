@@ -74,6 +74,6 @@ class SharesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def share_params
-      params.require(:share).permit(:email, :recipient_email, :message, :url_string, documents_attributes: [:share_id, :item])
+      params.require(:share).permit(:email, :recipient_email, :message, :url_string,:name, documents_attributes: [:share_id, :item])
     end
 end
