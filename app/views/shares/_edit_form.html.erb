@@ -11,20 +11,12 @@
     </div>
   <% end %>
 
+
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :recipient_email %><br>
-    <%= f.text_field :recipient_email %>
+    <%= f.label :message %><br>
+    <%= f.text_area :message %>
   </div>
   <div class="actions">
-    <p>You will add your file(s) on the next page(s)</p>
-    <%= f.submit "Start Sharing" , :class => "btn-primary btn"%>
+    <%= f.submit "Finalize" , :class => "btn-primary btn"%>
   </div>
 <% end %>

@@ -1,4 +1,9 @@
 FileShareTool::Application.routes.draw do
+  get 'shares/:id/finalize', to: 'shares#edit'
+  get 'shares/new', to: 'shares#new'
+  get 'shares/:url_string', to: 'shares#show_share'
+  get 'shares/final/:id', to: 'shares#show'
+  get 'documents/new/:id', to: 'documents#new'
   resources :documents
 
   resources :shares

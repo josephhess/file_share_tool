@@ -8,8 +8,30 @@
 </head>
 <body>
   <div class="container">
-
+    <div class="navbar">
+      <div class="navbar-inner">
+        <a class="brand" href="#">File Share Tool</a>
+        <ul class="nav">
+          <li class=""><a href="/">Home</a></li>
+        </ul>
+      </div>
+    </div>
     <%= yield %>
   </div>
+  <script src="http://code.jquery.com/jquery.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#download_button').on('click', function(){
+        console.log("button clicked")
+        $.ajax({
+          type: "post",
+          url: "/shares/show_share",
+              success: function(){
+                console.log("posted for download noitifier")
+              }
+        })
+      });
+    });
+  </script>
 </body>
 </html>

@@ -5,7 +5,7 @@
   <%= @share.email %>
 </p>
 <p>
-  <strong>Share Number:</strong>
+  <strong>Id:</strong>
   <%= @share.id %>
 </p>
 <p>
@@ -19,11 +19,11 @@
 </p>
 
 <p>
-  <strong>Shared File Location(s)</strong>
+  <strong>Shared File(s)</strong>
+  <p><strong>Right click to download files</strong></p>
   <% @share.documents.each do |doc| %>
-  <div class='well'><%= doc.item %></div>
+  <div class="btn" id="download_button"><a href="<%= doc.item %>" target="_blank"><%= doc.item %></a></div>
   <% end %>
 </p>
-
 <%= link_to 'Edit', edit_share_path(@share) %> |
 <%= link_to 'Back', shares_path %>

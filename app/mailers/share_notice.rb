@@ -6,7 +6,16 @@ class ShareNotice < ActionMailer::Base
     @recipient = @share.recipient_email
     mail(
       :to => @share.recipient_email,
-      :subject => "Someone has shared a file with you!"
+      :subject => "#{@share.name} has shared a file with you!"
+      )
+  end
+
+  def download_notify(share)
+    @share = share
+    @recipient = @share.email
+    mail(
+      :to => @share.email,
+      :subject => "#{@share.recipient_email} has visited your file share!"
       )
   end
 end

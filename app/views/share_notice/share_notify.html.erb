@@ -9,14 +9,17 @@
       <%= @share.name %> has shared a file with you!
     </p>
     <p>
+      You have 3 days (until <%= @share.created_at + 3.days %>) to access these files.
+    </p>
+    <p>
       A message regarding this file share:
     </p>
     <p>
       <%= @share.message  %>
     </p>
     <p>
-      Please go to http://file-share-test.herokuapp.com/shares/<%= @share.id %> to download your file!!
+      Please go to http://file-share-test.herokuapp.com/shares/<%= @share.url_string %> to download your file!!
     </p>
-    <p>Thanks for joining and have a great day!</p>
+    <p>Have a great day!</p>
   </body>
 </html>

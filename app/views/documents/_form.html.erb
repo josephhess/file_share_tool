@@ -10,17 +10,15 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :share_id %><br>
-    <%= f.number_field :share_id %>
-  </div>
-    <div class="field">
-    <%= f.label :file_to_share %><br>
+    <%= f.hidden_field :share_id, :value => @share.id %>
+    <div class="field well">
+    <%= f.label :file_to_share , :class => "lead" %><br>
     <%= f.file_field :item%>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Upload File" , :class => "btn-primary btn" %>
   </div>
+  <p>or</p>
+  <div><%= link_to 'Finish your share with a message', "/shares/#{@share.id}/finalize", :class => 'btn' %></div>
 <% end %>

@@ -1,5 +1,5 @@
 class SharesController < ApplicationController
-  before_action :set_share, only: [:show, :edit, :update, :destroy]
+  before_action :set_share, only: [ :show, :edit, :update, :destroy]
 
   # GET /shares
   # GET /shares.json
@@ -7,10 +7,15 @@ class SharesController < ApplicationController
     @shares = Share.all
   end
 
+  def show_share
+    @share = Share.find_by_url_string(params["url_string"])
+    ShareNotice.download_notify(@share).deliver
+  end
+
   # GET /shares/1
   # GET /shares/1.json
   def show
-    @document = Document.where(:share_id => @share.id)
+    @share = Share.find_by_id(params[:id])
   end
 
   # GET /shares/new
@@ -20,6 +25,7 @@ class SharesController < ApplicationController
 
   # GET /shares/1/edit
   def edit
+    @share = Share.find_by_id(params[:id])
   end
 
   # POST /shares
@@ -28,18 +34,13 @@ class SharesController < ApplicationController
     @share = Share.new(share_params)
     respond_to do |format|
       if @share.save
-        format.html { redirect_to @share, notice: 'Share was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @share }
+        format.html { redirect_to "/documents/new/#{@share.id}", notice: 'Share was successfully created.' }
+        format.json { render action: '/document/new', status: :created, location: @share }
       else
         format.html { render action: 'new' }
         format.json { render json: @share.errors, status: :unprocessable_entity }
       end
     end
-    @document = Document.new({:item => params[:share][:document][:item], :share_id => @share.id})
-    if @document.save!
-      ShareNotice.share_notify(@share).deliver
-    end
-
   end
 
   # PATCH/PUT /shares/1
@@ -47,7 +48,8 @@ class SharesController < ApplicationController
   def update
     respond_to do |format|
       if @share.update(share_params)
-        format.html { redirect_to @share, notice: 'Share was successfully updated.' }
+        ShareNotice.share_notify(@share).deliver
+        format.html { redirect_to "/shares/final/#{@share.id}", notice: 'Share was successfully finalized.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
