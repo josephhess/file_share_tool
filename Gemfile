@@ -7,6 +7,7 @@ gem 'rails_12factor'
 gem 'aws-sdk'
 gem 'carrierwave'
 gem 'fog',  '~> 1.3.1'
+gem 'newrelic_rpm'
 
 # Use sqlite3 as the database for Active Record
 group :development do
